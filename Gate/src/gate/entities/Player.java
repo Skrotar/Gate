@@ -18,7 +18,6 @@ public class Player extends Sprite implements InputProcessor {
 
 	private boolean canJump;
 	private boolean attacking;
-	private boolean rsloped = false;
 
 
 	private Animation still, left, right, attack;
@@ -93,8 +92,6 @@ public class Player extends Sprite implements InputProcessor {
 
 		// update animation
 		animationTime += delta;
-		//setRegion(velocity.x < 0 ? left.getKeyFrame(animationTime) : velocity.x > 0 ? right.getKeyFrame(animationTime) : still.getKeyFrame(animationTime));
-		//setRegion(attack.getKeyFrame(animationTime)); 
 		setRegion(velocity.x < 0 ? left.getKeyFrame(animationTime) : velocity.x > 0 ? right.getKeyFrame(animationTime) : attacking == true ? attack.getKeyFrame(animationTime) :still.getKeyFrame(animationTime));
 	}
 
@@ -180,10 +177,6 @@ public class Player extends Sprite implements InputProcessor {
 			break;
 		case Keys.D:
 			velocity.x = speed;
-			//react to x sloping
-			if (rsloped){
-				setY(+ 16);
-			}
 			animationTime = 0;
 		
 	case Keys.I:
